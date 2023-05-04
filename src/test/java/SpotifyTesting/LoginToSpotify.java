@@ -44,7 +44,10 @@ public class LoginToSpotify extends BaseTestS {
     }
     @Test
     public void play_podcast(){
-
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.open();
+        loginToPageS.logToSpotify(username,password);
+        loginToPageS.playPodcast();
     }
 
     @Test

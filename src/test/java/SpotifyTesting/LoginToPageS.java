@@ -117,4 +117,31 @@ public class LoginToPageS extends BasePageS{
             return false;
         }
     }
+
+    //////////////////////////////////////////////////// play podcast
+
+    private WebElement getPodcastToPlay() {
+        By podcastBy = By.xpath("(//*[@class='jb9xD5ECTqKFK02qe3HZ'])[3]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(podcastBy));
+        return driver.findElement(podcastBy);
+    }
+
+    private WebElement getPlayButton(){
+        By playButtonBy = By.xpath("(//*[@class='Button-sc-qlcn5g-0 jbcotm'])[1]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(playButtonBy));
+        return driver.findElement(playButtonBy);
+    }
+
+    public void playPodcast(){
+        getPodcastToPlay().click();
+        getPlayButton().click();
+    }
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////
 }
