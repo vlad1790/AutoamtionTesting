@@ -165,5 +165,14 @@ public void renamePlayList(String newName) { // It worked successfully!
      pauseSong.click();
 
  }
+ ///////////////////////////// open your podcasts -> your episodes -> 3 dots -> remove podcast
+    //tree dots (//button[@type='button'])[8] sandhagen podcast
+    // remove episode (//span[@class='Type__TypeElement-sc-goli3j-0 eMzEmF ellipsis-one-line PDPsYDh4ntfQE3B4duUI'])[2]
+
+
+
+
+
+    ///////////////////// delete a song from play list
 
 }

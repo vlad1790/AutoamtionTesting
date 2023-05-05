@@ -118,30 +118,71 @@ public class LoginToPageS extends BasePageS{
         }
     }
 
-    //////////////////////////////////////////////////// play podcast
+    //////////////////////////////////////////////////// open Joe podcast -> SCROLL it to podcast and play it and saved to a library || It worked!
 
-    private WebElement getPodcastToPlay() {
-        By podcastBy = By.xpath("(//*[@class='jb9xD5ECTqKFK02qe3HZ'])[3]");
+    public void PlayPodcast(){
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        By podcastBy = By.xpath("(//div[@class='tsv7E_RBBw6v0XTQlcRo'])[1]");
         wait.until(ExpectedConditions.visibilityOfElementLocated(podcastBy));
-        return driver.findElement(podcastBy);
+        WebElement podcast = driver.findElement(podcastBy);
+        js.executeScript("arguments[0].scrollIntoView();", podcast);
+
+        Actions actions = new Actions(driver);
+        actions.doubleClick(podcast).perform();
+
+        By imageBy = By.xpath("(//div[@class='ij5_Bi2LfqgWwHzQBXJS'])[18]"); //(//*[@class='DyuLxip2Kl8P7H8fW62u'])[24]
+        wait.until(ExpectedConditions.visibilityOfElementLocated(imageBy));
+        WebElement image = driver.findElement(imageBy);
+        js.executeScript("arguments[0].scrollIntoView();", image);
+        image.click();
+
+        By pressButtonBy = By.xpath("//button[@class='IeLnf2wUHVKqxhzBcBoM KOoUMuC7IxI_1Pi4r4m5 encore-bright-accent-set']");
+        wait.until(ExpectedConditions.elementToBeClickable(pressButtonBy));
+        WebElement pressButton = driver.findElement(pressButtonBy);
+        pressButton.click();
+
+        // add podcast to a play list
+        By plusBy = By.xpath("(//button[@type='button'])[2]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(plusBy));
+        WebElement plus = driver.findElement(plusBy);
+        plus.click();
     }
 
-    private WebElement getPlayButton(){
-        By playButtonBy = By.xpath("(//*[@class='Button-sc-qlcn5g-0 jbcotm'])[1]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(playButtonBy));
-        return driver.findElement(playButtonBy);
+    ///////////////////////////////////////// Google Search
+    public void google(){
+        driver.get("https://www.google.com/");
     }
 
-    public void playPodcast(){
-        getPodcastToPlay().click();
-        getPlayButton().click();
+    public void googleSearch(String name){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By googleSearchBy = By.xpath("//*[@class='gLFyf']");
+        wait.until(ExpectedConditions.elementToBeClickable(googleSearchBy));
+        WebElement googleSearch = driver.findElement(googleSearchBy);
+        googleSearch.click();
+        googleSearch.sendKeys(name);
+        googleSearch.sendKeys(Keys.ENTER);
+
+        By ufcBy = By.xpath("//h3[@class='LC20lb MBeuO DKV0Md']");
+        wait.until(ExpectedConditions.elementToBeClickable(ufcBy));
+        WebElement ufc = driver.findElement(ufcBy);
+        js.executeScript("arguments[0].scrollIntoView();", ufc);
+
+        Actions actions = new Actions(driver);
+        actions.doubleClick(ufc).perform();
+
+
+
+
+
+
+
+        //Actions actions = new Actions(driver);
+        //actions.doubleClick(podcast).perform();
     }
 
 
 
 
-
-
-
-    ////////////////////////////////////////////////////
 }

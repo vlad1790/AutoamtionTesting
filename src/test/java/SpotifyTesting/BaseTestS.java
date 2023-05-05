@@ -31,7 +31,7 @@ public class BaseTestS {
     }
     @AfterMethod
     // we use this annotation before the function, and it will work at the end of the tests to keep the code dry!
-    public void tearDown(ITestResult iTestResult) throws InterruptedException { //FOR SCREENSHOT IF TEST FAILS TO GET SCREENSHOT!
+    public void tearDown(@org.jetbrains.annotations.NotNull ITestResult iTestResult) throws InterruptedException { //FOR SCREENSHOT IF TEST FAILS TO GET SCREENSHOT!
         if (iTestResult.getStatus() == iTestResult.FAILURE){
             GetScreenshot.capture(driver, iTestResult.getName());
         }

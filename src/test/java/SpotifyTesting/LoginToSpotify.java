@@ -47,7 +47,7 @@ public class LoginToSpotify extends BaseTestS {
         LoginToPageS loginToPageS = new LoginToPageS(driver);
         loginToPageS.open();
         loginToPageS.logToSpotify(username,password);
-        loginToPageS.playPodcast();
+        loginToPageS.PlayPodcast();
     }
 
     @Test
@@ -56,7 +56,10 @@ public class LoginToSpotify extends BaseTestS {
     }
 
     @Test
-    public void search_EnglishPremierLeague_inGoogle(){
+    public void search_ufc_inGoogle(){
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.google();
+        loginToPageS.googleSearch("ufc.com");
 
     }
 }
