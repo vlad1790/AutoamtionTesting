@@ -101,6 +101,7 @@ public void renamePlayList(String newName) { // It worked successfully!
     logger.info("Created Playlist with name -> " + newName);
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
+
     By openBy = By.xpath("(//*[@class='Areas__HeaderArea-sc-8gfrea-3 fInrEV'])[12]");
     wait.until(ExpectedConditions.visibilityOfElementLocated(openBy));
     WebElement playList = driver.findElement(openBy);

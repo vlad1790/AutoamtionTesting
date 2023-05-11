@@ -48,7 +48,10 @@ public class PlayListSpotify extends BaseTestS{
 
     @Test
     public void removeSong_fromPlayList(){
-
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.open();
+        loginToPageS.logToSpotify(username,password);
+        loginToPageS.deleteSong();
     }
 
     @Test
