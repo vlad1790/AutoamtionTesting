@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Master Suit">
+
+    <parameter name="firstname" value="Vlad"></parameter>
+    <parameter name="lastname" value="Test"></parameter>
+    <parameter name="streetAddress" value="3250 Bloor St W"></parameter>
+    <parameter name="city" value="Toronto"></parameter>
+    <parameter name="postCode" value="M3C 0E3"></parameter>
+    <parameter name="email" value="kalayda.vlad100@gmail.com"></parameter>
+    <parameter name="phone" value="9999999999"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
+
+    <listeners>
+        <listener class-name="Listeners.Listeners"></listener>
+    </listeners>
+
+    <test name="Main tests">
+        <classes>
+            <class name="ColorStreetTesting.LogInToTheColorStreet">
+            <methods>
+                <include name="colorStreet_E2E_Testing"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
