@@ -1,6 +1,6 @@
 package ColorStreetTesting;
 
-public enum BrowserTypes { //tt
+public enum BrowserTypes {
     CHROME,
     FIREFOX,
     OPERA,

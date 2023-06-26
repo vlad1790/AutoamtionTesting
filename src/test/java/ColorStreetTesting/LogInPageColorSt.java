@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class LogInPageColorSt extends BasePageS { //extends
 
@@ -105,6 +106,7 @@ public class LogInPageColorSt extends BasePageS { //extends
         wait.until(ExpectedConditions.visibilityOfElementLocated(selectStylistBy));
         WebElement selectStylist = driver.findElement(selectStylistBy);
         selectStylist.click();
+
         return new LogShippingPageS(driver);
     }
 
@@ -303,22 +305,26 @@ public class LogInPageColorSt extends BasePageS { //extends
         WebElement solidColor = driver.findElement(solidColorsBy);
         solidColor.click();
 
-        List<WebElement> products = driver.findElements(By.xpath("//*[@class='text-black']"));
+        // List<WebElement> products = driver.findElements(By.xpath("//*[@class='text-black']"));
         // WebElement q;
         // for(int i=0; i < products.size(); i++){
         //     q = products.get(i);
-        //     System.out.println(q.getText());
+        //    System.out.println(q.getText());
         // }
 
-        //  for(WebElement w : products){
-        //     System.out.println(w.getText());
+        // for(WebElement w : products){
+        //    System.out.println(w.getText());
         //  }
 
-        for (WebElement pr : products) {
-            if (pr.getText().contains("Toffee Nut")) {
-                System.out.println(pr.getText());
-            }
-        }
+        //  for (WebElement pr : products) {
+        //      if (pr.getText().contains("Toffee Nut")) {
+        //          System.out.println(pr.getTagName());
+        //          System.out.println(pr.isDisplayed());
+        //          System.out.println(pr.getText());
+        //          System.out.println(pr.getSize());
+
+        //    }
+        // }
 
 
         // for(WebElement p : products){
@@ -331,8 +337,96 @@ public class LogInPageColorSt extends BasePageS { //extends
 
         //  }
 
+         WebElement myProducts = products();
+         System.out.println(myProducts.getTagName());
+         System.out.println(myProducts.getText());
     }
+
+    private WebElement products(){
+        List<WebElement> products = driver.findElements(By.xpath("//*[@class='text-black']"));
+        for (WebElement pr : products) {
+            if (pr.getText().contains("Toffee Nut")) {
+                return pr;
+            }
+        }
+        return null;
     }
+
+    public void application(){
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions actions = new Actions(driver);
+
+        By saveAllBy = By.xpath("//*[@class='ot-bnr-save-handler']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(saveAllBy));
+        WebElement saveAll = driver.findElement(saveAllBy);
+        saveAll.click();
+
+        By applicationBy = By.xpath("//a[@href='/home/application']");
+        wait.until(ExpectedConditions.elementToBeClickable(applicationBy));
+        WebElement application = driver.findElement(applicationBy);
+        js.executeScript("arguments[0].scrollIntoView();", application);
+        actions.moveToElement(application).perform();
+
+        WebElement video = driver.findElement(By.xpath("//a[@href='/home/application#videos']"));
+        video.click();
+    }
+
+    public boolean isDisplayedText(){
+        By textBy = By.xpath("//div[@class='col-lg-12 application-header']");
+        try{
+            wait.until(ExpectedConditions.visibilityOfElementLocated(textBy));
+            return true;
+
+        } catch (TimeoutException error){
+            return false;
+        }
+    }
+
+    public void logIn(String zipCode){
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions actions = new Actions(driver);
+
+        By saveAllBy = By.xpath("//*[@class='ot-bnr-save-handler']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(saveAllBy));
+        WebElement saveAll = driver.findElement(saveAllBy);
+        saveAll.click();
+
+        By loginBy = By.xpath("//a[@href='/home/account/login']");
+        wait.until(ExpectedConditions.elementToBeClickable(loginBy));
+        WebElement logIn = driver.findElement(loginBy);
+        js.executeScript("arguments[0].scrollIntoView();", logIn);
+        logIn.click();
+
+        WebElement createAccount = driver.findElement(By.xpath("//a[@href='/home/account/register']"));
+        createAccount.click();
+
+        By unitedBy = By.xpath("(//*[text()='United States'])[4]");
+        wait.until(ExpectedConditions.elementToBeClickable(unitedBy));
+        WebElement unitedStates = driver.findElement(unitedBy);
+        unitedStates.click();
+
+        By zipCodeBy = By.xpath("(//*[@class='form-control search-form--input'])[4]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(zipCodeBy));
+        WebElement zip = driver.findElement(zipCodeBy);
+        zip.click();
+        zip.sendKeys(zipCode);
+
+        WebElement searchButton = driver.findElement(By.xpath("(//a[@class='input-group-addon btn btn-primary btn-primary--purple'])[4]"));
+        searchButton.click();
+
+        By stylistBy = By.xpath("(//a[@class='btn btn-primary'])[3]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(stylistBy));
+        WebElement stylist = driver.findElement(stylistBy);
+        js.executeScript("arguments[0].scrollIntoView();", stylist);
+
+        boolean status = stylist.isDisplayed();
+        System.out.println("The stylist is displayed = " + status);
+
+    }
+}
+
 
 
 

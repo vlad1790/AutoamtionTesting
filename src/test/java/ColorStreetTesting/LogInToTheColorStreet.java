@@ -66,6 +66,29 @@ public class LogInToTheColorStreet extends BaseTestS { //extends
         logInPageColorSt.arrayListLoop();
     }
 
+    @Test
+    public void test8(){
+        LogShippingPageS logShippingPageS = new LogShippingPageS(driver);
+        logShippingPageS.openWebsite();
+        logShippingPageS.checkOutPage("10031");
+        Assert.assertTrue(logShippingPageS.nameIsDisplayed());
+    }
+
+    @Test
+    public void test9(){
+        LogInPageColorSt logInPageColorSt = new LogInPageColorSt(driver);
+        logInPageColorSt.openWebsite();
+        logInPageColorSt.application();
+        Assert.assertTrue(logInPageColorSt.isDisplayedText());
+    }
+
+    @Test
+    public void test10(){
+        LogInPageColorSt logInPageColorSt = new LogInPageColorSt(driver);
+        logInPageColorSt.openWebsite();
+        logInPageColorSt.logIn("10031");
+    }
+
 
 
     // choose stylist

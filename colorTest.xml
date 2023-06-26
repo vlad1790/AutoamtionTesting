@@ -18,7 +18,12 @@
         <classes>
             <class name="ColorStreetTesting.LogInToTheColorStreet">
             <methods>
-                <include name="colorStreet_E2E_Testing"/>
+                <include name="test5"/>
+                <include name="test6"/>
+                <include name="test7"/>
+                <include name="test8"/>
+                <include name="test9"/>
+                <include name="test10"/>
             </methods>
             </class>
         </classes>
