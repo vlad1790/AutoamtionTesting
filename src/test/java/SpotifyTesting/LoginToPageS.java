@@ -6,8 +6,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.sql.Time;
-
 public class LoginToPageS extends BasePageS{
 
     private static Logger logger = LogManager.getLogger(LoginToPageS.class);
@@ -33,7 +31,7 @@ public class LoginToPageS extends BasePageS{
     }
 ////////////////////////////////////////////////////////////////////////////// Get account and log out
     private WebElement getAccountIcon(){
-        By accountBy = By.xpath("//div[@class='KdxlBanhDJjzmHfqhP0X']");
+        By accountBy = By.xpath("//*[@class='Button-sc-1dqy6lx-0 drEYjZ encore-over-media-set Fxnb0xe6bL7I7W8V0p6C']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(accountBy));
         return driver.findElement(accountBy);
     }
@@ -53,7 +51,7 @@ public class LoginToPageS extends BasePageS{
         return driver.findElement(searchFieldBy);
     }
     private WebElement getSongtoPlay(){
-        By songBy = By.xpath("//span[@class='ButtonInner-sc-14ud5tc-0 jqrOrp encore-bright-accent-set']");
+        By songBy = By.xpath("//*[@class='vnCew8qzJq3cVGlYFXRI']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(songBy));
         return driver.findElement(songBy);
     }
@@ -67,7 +65,7 @@ public class LoginToPageS extends BasePageS{
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        By playListBy = By.xpath("(//*[@class='Areas__HeaderArea-sc-8gfrea-3 fInrEV'])[13]");
+        By playListBy = By.xpath("(//*[@class='Areas__HeaderArea-sc-8gfrea-3 fInrEV'])[10]");
         wait.until(ExpectedConditions.visibilityOfElementLocated(playListBy));
         WebElement playList = driver.findElement(playListBy);
         js.executeScript("arguments[0].scrollIntoView();", playList);
@@ -87,6 +85,7 @@ public class LoginToPageS extends BasePageS{
 ////////////////////////////////////////////////////////////////////////////
     public MainPageS logToSpotify(String username, String password){
         logger.info("Log in was successful to Spotify!"); // Notebook
+
         getEmailField().sendKeys(username);
         getPasswordField().sendKeys(password);
         getLoginButton().click();
@@ -204,14 +203,10 @@ public class LoginToPageS extends BasePageS{
         js.executeScript("arguments[0].scrollIntoView();", ufc);
         ufc.click();
 
-
         By eventsBy = By.xpath("(//*[@class='c-menu-main__item--left'])[1]");
         wait.until(ExpectedConditions.elementToBeClickable(eventsBy));
         WebElement events = driver.findElement(eventsBy);
         events.click();
-
-
-
     }
 
     public boolean isMainEvent(){
@@ -280,7 +275,6 @@ public class LoginToPageS extends BasePageS{
         WebElement ufcButton = driver.findElement(ufcButtonBy);
         ufcButton.click();
 
-
         By playBy = By.xpath("//a[@href='/video/ufc-30th-anniversary-changing-game']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(playBy));
         WebElement play = driver.findElement(playBy);
@@ -300,6 +294,182 @@ public class LoginToPageS extends BasePageS{
             return false;
         }
     }
+
+    public void googleSearch4(String name){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By googleSearchBy = By.xpath("//*[@class='gLFyf']");
+        wait.until(ExpectedConditions.elementToBeClickable(googleSearchBy));
+        WebElement googleSearch = driver.findElement(googleSearchBy);
+        googleSearch.click();
+        googleSearch.sendKeys(name);
+        googleSearch.sendKeys(Keys.ENTER);
+
+        WebElement ufc = driver.findElement(By.xpath("(//div[@class='g5wfEd'])[2]"));
+        js.executeScript("arguments[0].scrollIntoView();", ufc);
+        ufc.click();
+
+        By shopBy = By.xpath("//a[@href='https://ufcstore.com']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(shopBy));
+        WebElement shop = driver.findElement(shopBy);
+
+        Actions actions = new Actions(driver);
+        actions.doubleClick(shop).perform();
+
+    }
+
+    public void ufcTest(String name, String searchName){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By googleSearchBy = By.xpath("//*[@class='gLFyf']");
+        wait.until(ExpectedConditions.elementToBeClickable(googleSearchBy));
+        WebElement googleSearch = driver.findElement(googleSearchBy);
+        googleSearch.click();
+        googleSearch.sendKeys(name);
+        googleSearch.sendKeys(Keys.ENTER);
+
+        WebElement ufc = driver.findElement(By.xpath("(//div[@class='g5wfEd'])[2]"));
+        js.executeScript("arguments[0].scrollIntoView();", ufc);
+        ufc.click();
+
+        WebElement search = driver.findElement(By.xpath("//*[@class='e-icon__svg search']"));
+        search.click();
+
+        By searchFieldBy = By.xpath("//*[@class='js-yext-query yxt-SearchBar-input']");
+        wait.until(ExpectedConditions.elementToBeClickable(searchFieldBy));
+        WebElement searchField = driver.findElement(searchFieldBy);
+        searchField.click();
+        searchField.sendKeys(searchName);
+        searchField.sendKeys(Keys.RETURN);
+
+    }
+
+    public void ufc(){
+        driver.get("https://www.ufc.com");
+//        driver.navigate().refresh();
+    }
+
+    public void ufcSearch(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By athletesBy = By.xpath("//a[@href='/athletes']");
+        WebElement athletes = driver.findElement(athletesBy);
+        js.executeScript("arguments[0].scrollIntoView();", athletes);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(athletesBy));
+        athletes.click();
+
+
+        By allAthletesBy = By.xpath("//a[@href='/athletes/all']");
+        wait.until(ExpectedConditions.elementToBeClickable(allAthletesBy));
+        WebElement allAthletes = driver.findElement(allAthletesBy);
+        js.executeScript("arguments[0].scrollIntoView();", allAthletes);
+        allAthletes.click();
+
+    }
+    public boolean filters(){
+        By filtersBy = By.xpath("(//span[@class='e-button__text'])[12]");
+        try{
+            wait.until(ExpectedConditions.visibilityOfElementLocated(filtersBy));
+            return true;
+        } catch (TimeoutException error){
+            return false;
+        }
+    }
+
+    public void ufcSearch2(){
+
+        By eventsBy = By.xpath("//a[@href='/events']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(eventsBy));
+        WebElement events = driver.findElement(eventsBy);
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(events);
+
+        WebElement watch = driver.findElement(By.xpath("//a[@href='/watch']"));
+        actions.moveToElement(watch);
+
+        WebElement athletes = driver.findElement(By.xpath("//a[@href='/athletes']"));
+        actions.moveToElement(athletes);
+
+        actions.click().build().perform();
+
+    }
+
+    public void ufcSearch4(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By newsBy = By.xpath("//a[@href='/trending/all']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(newsBy));
+        WebElement news = driver.findElement(newsBy);
+        news.click();
+
+        WebElement video = driver.findElement(By.xpath("//*[@src='/s3/files/styles/brand_page_grid_image_mobile_x1/s3/2023-05/051323-Tainara-Lisboa-GettyImages-1488927326.jpg?itok=FEzI6otM']"));
+        js.executeScript("arguments[0].scrollIntoView();", video);
+
+        Actions actions = new Actions(driver);
+        actions.doubleClick(video).perform();
+
+    }
+
+    public void ufcSearch5(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By newsBy = By.xpath("(//a[@href='/trending/all'])[1]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(newsBy));
+        WebElement news = driver.findElement(newsBy);
+        news.click();
+
+        By buttonBy = By.xpath("//a[@href='?created=1&page=1']");
+        wait.until(ExpectedConditions.elementToBeClickable(buttonBy));
+        WebElement button = driver.findElement(buttonBy);
+        js.executeScript("arguments[0].scrollIntoView();", button);
+        button.click();
+
+    }
+
+    public boolean imageFightPass(){
+        By imageBy = By.xpath("(//div[@class='c-card--grid-card-trending__3-wrapper'])[16]");
+        logger.info("Image was asserted!");
+        try{
+            wait.until(ExpectedConditions.visibilityOfElementLocated(imageBy));
+            return true;
+        } catch (TimeoutException error){
+            return false;
+        }
+    }
+    public void ufcSearch6(String name){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        By searchButtonBy = By.xpath("//*[@class='e-icon__svg search']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchButtonBy));
+        WebElement searchButton = driver.findElement(searchButtonBy);
+        searchButton.click();
+
+        By searchFieldBy = By.xpath("//*[@class='js-yext-query yxt-SearchBar-input']");
+        wait.until(ExpectedConditions.elementToBeClickable(searchFieldBy));
+        WebElement searchField = driver.findElement(searchFieldBy);
+        searchField.click();
+        searchField.sendKeys(name);
+        searchField.sendKeys(Keys.ENTER);
+
+    }
+
+    public boolean viewAll(){
+        By viewALLbY = By.xpath("//a[@href='#main-content']");
+            try{
+                wait.until(ExpectedConditions.visibilityOfElementLocated(viewALLbY));
+                return true;
+            } catch (TimeoutException error){
+                return false;
+            }
+    }
+
+
+
+
+
+
+
 
 
 
@@ -359,31 +529,62 @@ public class LoginToPageS extends BasePageS{
         // //button[@class='idI9vydtCzXVhU1BaKLw'] assert
 
 
-
     }
-    //////////////////////////////////////////////////////// delete a song from play list
+    //////////////////////////////////////////////////////// delete a song from play list -> It worked!
 
     public void deleteSong() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions actions = new Actions(driver);
 
-        By playListBy = By.xpath("(//*[@class='jb9xD5ECTqKFK02qe3HZ'])[1]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(playListBy));
+        By playListBy = By.xpath("(//*[@class='Areas__HeaderArea-sc-8gfrea-3 fInrEV'])[4]");
+        wait.until(ExpectedConditions.elementToBeClickable(playListBy));
         WebElement playList = driver.findElement(playListBy);
         js.executeScript("arguments[0].scrollIntoView();", playList);
-        playList.click();
+        actions.doubleClick(playList).perform();
 
-        By threeDotsBy = By.xpath("(//button[@class='T0anrkk_QA4IAQL29get mYN_ST1TsDdC6q1k1_xs'])[1]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(threeDotsBy));
-        WebElement threeDots = driver.findElement(playListBy);
-        js.executeScript("arguments[0].scrollIntoView();", threeDots);
+        By allBy = By.xpath("(//*[@class='h4HgbO_Uu1JYg5UGANeQ wTUruPetkKdWAR1dd6w4'])[3]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(allBy));
+        WebElement all = driver.findElement(allBy);
+        actions.moveToElement(all).perform();
+
+        By threeDotsBy = By.xpath("(//*[@class='T0anrkk_QA4IAQL29get mYN_ST1TsDdC6q1k1_xs'])[3]");
+        wait.until(ExpectedConditions.elementToBeClickable(threeDotsBy));
+        WebElement threeDots = driver.findElement(threeDotsBy);
         threeDots.click();
 
-        By removeBy = By.xpath("(//*[@class='DuEPSADpSwCcO880xjUG'])[7]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(threeDotsBy));
-        WebElement remove = driver.findElement(removeBy);
-        js.executeScript("arguments[0].scrollIntoView();", remove);
-        remove.click();
+        WebElement removeButton = driver.findElement(By.xpath("(//*[@class='Type__TypeElement-sc-goli3j-0 eMzEmF ellipsis-one-line PDPsYDh4ntfQE3B4duUI'])[7]"));
+        removeButton.click();
+    }
+
+    public void addSongToPlayList() { //----It worked!--------
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions actions = new Actions(driver);
+
+        By playListBy = By.xpath("(//*[@class='Areas__HeaderArea-sc-8gfrea-3 fInrEV'])[4]");
+        wait.until(ExpectedConditions.elementToBeClickable(playListBy));
+        WebElement playList = driver.findElement(playListBy);
+        js.executeScript("arguments[0].scrollIntoView();", playList);
+        actions.doubleClick(playList).perform();
+
+        By allBy = By.xpath("(//*[@class='h4HgbO_Uu1JYg5UGANeQ wTUruPetkKdWAR1dd6w4'])[4]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(allBy));
+        WebElement all = driver.findElement(allBy);
+        actions.moveToElement(all).perform();
+
+        By threeDotsBy = By.xpath("(//*[@class='T0anrkk_QA4IAQL29get mYN_ST1TsDdC6q1k1_xs'])[4]");
+        wait.until(ExpectedConditions.elementToBeClickable(threeDotsBy));
+        WebElement threeDots = driver.findElement(threeDotsBy);
+        threeDots.click();
+
+        WebElement addToPlayList = driver.findElement(By.xpath("(//*[@class='Type__TypeElement-sc-goli3j-0 eMzEmF ellipsis-one-line'])[1]"));
+        actions.moveToElement(addToPlayList).perform();
+
+        WebElement picasso = driver.findElement(By.xpath("(//*[@class='Type__TypeElement-sc-goli3j-0 eMzEmF ellipsis-one-line PDPsYDh4ntfQE3B4duUI'])[15]"));
+        picasso.click();
 
     }
+
+
+
 
 }

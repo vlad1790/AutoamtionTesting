@@ -4,6 +4,7 @@ import Listeners.GetScreenshot;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,8 +27,17 @@ public class BaseTestS {
 
 //        System.setProperty("webdriver.chrome.driver","chromedriver"); //OLD WAY
 //        WebDriverManager.chromedriver().setup();//NEW WAY
+///////////////////////////////////////////////////////
+        ChromeOptions option = new ChromeOptions();  //To run an incognito mode
+        option.addArguments("incognito");
+ //       option.addArguments("--ignore-ssl-errors=yes");
+ //       option.addArguments("--ignore-certificate-errors");
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver(option);
+////////////////////////////////////////////////////
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(option);
+        driver.manage().window().maximize(); //to have a full screen.
     }
     @AfterMethod
     // we use this annotation before the function, and it will work at the end of the tests to keep the code dry!

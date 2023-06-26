@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class BrowserFactories { //tt
+public class BrowserFactories {
 
      public static WebDriver getDriver(BrowserTypes browser){ // we use static to avoid creating objects
          

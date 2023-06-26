@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import pageObjects.BaseTest;
 import pageObjects.LoginPage;
 
-import java.security.PublicKey;
 
 public class LoginToApp extends BaseTest { // Inheritance
 
@@ -21,7 +20,6 @@ public class LoginToApp extends BaseTest { // Inheritance
         Assert.assertTrue(true);
     }
 
-
     @Test // (enabled = false) to skip the test or exclude in TestNG. Now we run all tests from TestNG.
     public void loginToApp_correctCredentials_successfulLogin(){
         LoginPage loginPage = new LoginPage(driver);
@@ -29,6 +27,7 @@ public class LoginToApp extends BaseTest { // Inheritance
         MainPage mainPage = loginPage.loginToApp(username,password);
         Assert.assertTrue(mainPage.isMain());
     }
+
     @Test
     public void loginToApp_incorrectCredentials_failedLogin(){
         LoginPage loginPage = new LoginPage(driver);
@@ -36,6 +35,7 @@ public class LoginToApp extends BaseTest { // Inheritance
         loginPage.loginToApp(username,"wrong password");
         Assert.assertTrue(loginPage.isError());
     }
+
     @Test
     public void deletePlaylist_playListDeleted_Succesfully(){
         LoginPage loginPage = new LoginPage(driver);

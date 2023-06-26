@@ -5,7 +5,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
-public class BaseTestS { //extends
+public class BaseTestS {
+
         protected WebDriver driver;
         protected String name;
         protected String lastname;
@@ -31,9 +32,8 @@ public class BaseTestS { //extends
             BrowserTypes browserTypes = browser.equals("chrome") ? BrowserTypes.CHROME : BrowserTypes.FIREFOX;
             driver = BrowserFactories.getDriver(BrowserTypes.CHROME);
             driver.manage().window().maximize();
-
-
         }
+
         @AfterMethod
         public void tearDown1() throws InterruptedException {
             Thread.sleep(3000);

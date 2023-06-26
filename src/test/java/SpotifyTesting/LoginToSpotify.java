@@ -44,7 +44,6 @@ public class LoginToSpotify extends BaseTestS {
         loginToPageS.open();
         loginToPageS.logToSpotify(username, password);
         loginToPageS.deletePlayList();
-
     }
 
     @Test
@@ -56,16 +55,10 @@ public class LoginToSpotify extends BaseTestS {
     }
 
     @Test
-    public void add_podcast_toMyPodcasts() {
-
-    }
-
-    @Test
     public void search_ufc_inGoogle() {
         LoginToPageS loginToPageS = new LoginToPageS(driver);
         loginToPageS.google();
         loginToPageS.googleSearch("ufc.com");
-
     }
 
     @Test
@@ -92,6 +85,61 @@ public class LoginToSpotify extends BaseTestS {
         Assert.assertTrue(loginToPageS.isRead());
     }
 
+    @Test
+    public void ufc_search_inGoogle4() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.google();
+        loginToPageS.googleSearch4("ufc.com");
+    }
+
+    @Test
+    public void ufc_search_inGoogle5() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.google();
+        loginToPageS.ufcTest("ufc.com", "When's the next UFC event?");
+        Assert.assertTrue(loginToPageS.searchResult());
+    }
+
+    @Test
+    public void ufc_Search_Website1() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.ufc();
+        loginToPageS.ufcSearch();
+        Assert.assertTrue(loginToPageS.filters());
+    }
+
+    @Test
+    public void ufc_Search_Website2() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.ufc();
+        loginToPageS.ufcSearch2();
+    }
+    @Test
+    public void ufc_Search_Website3() { // logged in and refreshed the page!
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.ufc();
+    }
+    @Test
+    public void ufc_Search_Website4() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.ufc();
+        loginToPageS.ufcSearch4();
+    }
+
+    @Test
+    public void ufc_Search_Website5() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.ufc();
+        loginToPageS.ufcSearch5();
+        Assert.assertTrue(loginToPageS.imageFightPass());
+    }
+    @Test
+    public void ufc_Search_Website6() {
+        LoginToPageS loginToPageS = new LoginToPageS(driver);
+        loginToPageS.ufc();
+        loginToPageS.ufcSearch6("What is Conor McGregor's reach?");
+        Assert.assertTrue(loginToPageS.viewAll());
+    }
 
 }
 
